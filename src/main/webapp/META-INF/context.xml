@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    context.xml  –  Configuration de la DataSource pour Tomcat
+    Emplacement : $TOMCAT_HOME/conf/context.xml  (ou  META-INF/context.xml dans le WAR)
+
+    ⚠ Remplacer : jornadb, root, votre_mot_de_passe
+    ⚠ Vérifier que le driver MySQL (mysql-connector-j-X.X.X.jar) est dans $TOMCAT_HOME/lib/
+-->
+<Context>
+
+    <Resource name="jdbc/jorina"
+              auth="Container"
+              type="javax.sql.DataSource"
+              driverClassName="com.mysql.cj.jdbc.Driver"
+              url="jdbc:mysql://localhost:3306/jornadb?useSSL=false&amp;serverTimezone=UTC&amp;allowPublicKeyRetrieval=true"
+              username="root"
+              password="votre_mot_de_passe"
+              maxTotal="20"
+              maxIdle="10"
+              maxWaitMillis="10000"
+              validationQuery="SELECT 1"
+              testOnBorrow="true"/>
+
+</Context>

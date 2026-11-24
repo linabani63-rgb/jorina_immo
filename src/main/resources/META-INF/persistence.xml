@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="3.0"
+             xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence
+                                 https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
+
+    <persistence-unit name="jorinaPU" transaction-type="JTA">
+
+        <!-- Datasource JNDI configurée dans Tomcat / GlassFish / WildFly -->
+        <jta-data-source>java:comp/env/jdbc/jorina</jta-data-source>
+
+        <!-- Entités JPA -->
+        <class>entites.Department</class>
+        <class>entites.Apartment</class>
+        <class>entites.Contract</class>
+        <class>entites.Facture</class>
+        <class>entites.User</class>
+
+        <properties>
+            <!-- EclipseLink / Hibernate DDL -->
+            <!-- Utiliser "create" au premier déploiement, puis "none" -->
+            <property name="jakarta.persistence.schema-generation.database.action" value="create"/>
+
+            <!-- Hibernate (décommenter si vous utilisez Hibernate) -->
+            <!--
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+            -->
+
+            <!-- EclipseLink (décommenter si vous utilisez EclipseLink) -->
+            <!--
+            <property name="eclipselink.ddl-generation" value="create-tables"/>
+            <property name="eclipselink.logging.level" value="FINE"/>
+            -->
+        </properties>
+    </persistence-unit>
+
+</persistence>
